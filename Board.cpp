@@ -15,7 +15,7 @@ Board* Board::single = NULL;
 char const EMPTY_SYMBOL = '-';
 
 /**
-* Board object constructor
+* Board object deconstructor
 */
 Board::~Board() {
   instance_flag = false;

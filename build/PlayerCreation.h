@@ -5,11 +5,14 @@
 #ifndef BUILD_PLAYERCREATION_H_
 #define BUILD_PLAYERCREATION_H_
 
+#include "Human.h"
+#include "Player.h"
+
 #include <string>
 
 class PlayerCreation {
  public:
-    void GetPlayer(std::string);
+    Player *GetPlayer(std::string);
 };
 
 #endif  // BUILD_PLAYERCREATION_H_

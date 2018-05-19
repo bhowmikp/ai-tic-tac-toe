@@ -5,6 +5,8 @@
 #include <algorithm>
 #include <iostream>
 #include <string>
+#include "build/Human.h"
+#include "build/Player.h"
 #include "build/PlayerCreation.h"
 
 #define ENDL "\n"
@@ -16,15 +18,16 @@
 *
 * @return the proper type of player. If not found returns null
 */
-void PlayerCreation::GetPlayer(std::string playerType) {
+Player *PlayerCreation::GetPlayer(std::string playerType) {
   std::transform(playerType.begin(), playerType.end(), playerType.begin(),
                   ::tolower);
 
   if (playerType == "human") {
-    std::cout << "This is a human player" << ENDL;
+    return new Human();
   } else if (playerType == "computer") {
-    std::cout << "This is a computer player" << ENDL;
+    std::cout << "Create human" << ENDL;
+    return new Human();
   } else {
-    std::cout << "No player" << ENDL;
+    return new Human();
   }
 }

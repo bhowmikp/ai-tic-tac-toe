@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 #include "build/Board.h"
+#include "build/Human.h"
+#include "build/Player.h"
 #include "build/PlayerCreation.h"
 
 #define ENDL "\n"
@@ -22,7 +24,8 @@ int main() {
   std::cout << sc1->IsBoardFull() << ENDL;
 
   PlayerCreation *player = new PlayerCreation();
-  player->GetPlayer("ComPuter");
+  Player *first = player->GetPlayer("ComPuter");
+  first->PlaceMove(1, 2);
 
   return 0;
 }
