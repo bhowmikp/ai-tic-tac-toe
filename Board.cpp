@@ -9,9 +9,39 @@
 #define ENDL "\n"
 #define REP(i, a, b) for (int i = a; i < b; i++)
 
-void Board::ClearBoard() {
-  board = "000000000";
+bool Board::instance_flag = false;
+Board* Board::single = NULL;
+
+char const EMPTY_SYMBOL = '-';
+
+/**
+* Board object constructor
+*/
+Board::~Board() {
+  instance_flag = false;
 }
+
+/**
+* @return board object
+*/
+Board* Board::GetBoardInstance() {
+  if (!instance_flag) {
+    single = new Board();
+    instance_flag = true;
+  }
+  return single;
+}
+
+/**
+* Removes all selection on the board
+*/
+void Board::ClearBoard() {
+  board = std::string(9, EMPTY_SYMBOL);
+}
+
+/**
+* Prints the contents of the board
+*/
 void Board::PrintBoard() {
   REP(row, 0, 3) {
     REP(column, 0+row, 3+row) {
@@ -20,47 +50,46 @@ void Board::PrintBoard() {
   std::cout << ENDL;
   }
 }
+
+/**
+* @return get string representation of board
+*/
 std::string Board::GetBoard() {
   return board;
 }
+
+/**
+* Mark the location on the board with the specified symbol
+*
+* @param row: select the row
+* @param column: select the column
+* @param symbol: symbol to set at the specified row and column
+*/
 void Board::SetSymbol(int row, int column, char symbol) {
   board[((row-1)*3)+(column-1)] = symbol;
 }
+
+/**
+* Get the symbol at the specified locaion
+*
+* @param row: select the row
+* @param column: select the column
+*
+* @return the symbol at the specified location
+*/
 char Board::GetSymbol(int row, int column) {
   return board[((row-1)*3)+(column-1)];
 }
+
+/**
+* Returns if all the position in the board is taken
+*
+* @return whether there is an available spot in the board or not
+*/
 bool Board::IsBoardFull() {
   bool status = false;
-  if (board.find("0") == std::string::npos) {
+  if (board.find(EMPTY_SYMBOL) == std::string::npos) {
     status = true;
   }
   return status;
-}
-Board::~Board() {
-    instance_flag = false;
-}
-
-bool Board::instance_flag = false;
-Board* Board::single = NULL;
-Board* Board::GetBoardInstance() {
-    if (!instance_flag) {
-        single = new Board();
-        instance_flag = true;
-        return single;
-    } else {
-        return single;
-    }
-}
-
-int main() {
-  Board *sc1, *sc2;
-  sc1 = Board::GetBoardInstance();
-  sc1->ClearBoard();
-  sc2 = Board::GetBoardInstance();
-  sc2->SetSymbol(1, 2, 'x');
-  sc1->PrintBoard();
-  std::cout << sc2->GetBoard() << ENDL;
-  std::cout << sc1->GetSymbol(1, 2) << ENDL;
-  std::cout << sc1->IsBoardFull() << ENDL;
-  return 0;
 }

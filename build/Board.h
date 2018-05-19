@@ -1,4 +1,4 @@
-// Board.cpp - Create tic tac toe board
+// Board.h - Create tic tac toe board
 // Date: April 28, 2018
 // Copyright Prantar <Copyright Owner>
 
@@ -14,6 +14,7 @@ class Board {
     std::string board;
     Board() {}
  public:
+    ~Board();
     static Board* GetBoardInstance();
     void ClearBoard();
     void PrintBoard();
@@ -21,7 +22,6 @@ class Board {
     void SetSymbol(int, int, char);
     char GetSymbol(int, int);
     bool IsBoardFull();
-    ~Board();
 };
 
 #endif  // BUILD_BOARD_H_
