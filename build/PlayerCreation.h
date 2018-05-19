@@ -5,6 +5,7 @@
 #ifndef BUILD_PLAYERCREATION_H_
 #define BUILD_PLAYERCREATION_H_
 
+#include "Computer.h"
 #include "Human.h"
 #include "Player.h"
 
@@ -12,7 +13,7 @@
 
 class PlayerCreation {
  public:
-    Player *GetPlayer(std::string);
+    static Player *GetPlayer(std::string);
 };
 
 #endif  // BUILD_PLAYERCREATION_H_

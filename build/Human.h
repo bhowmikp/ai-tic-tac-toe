@@ -9,7 +9,7 @@
 
 class Human : public Player {
  public:
-    virtual void PlaceMove(int, int);
+    void PlaceMove(int, int);
 };
 
 #endif  // BUILD_HUMAN_H_

@@ -7,7 +7,7 @@
 
 class Player {
  public:
-    void PlaceMove(int, int);
+    virtual void PlaceMove(int, int);
 };
 
 #endif  // BUILD_PLAYER_H_

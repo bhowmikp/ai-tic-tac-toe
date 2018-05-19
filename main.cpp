@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "build/Board.h"
+#include "build/Computer.h"
 #include "build/Human.h"
 #include "build/Player.h"
 #include "build/PlayerCreation.h"
@@ -23,9 +24,13 @@ int main() {
   std::cout << sc1->GetSymbol(1, 2) << ENDL;
   std::cout << sc1->IsBoardFull() << ENDL;
 
-  PlayerCreation *player = new PlayerCreation();
-  Player *first = player->GetPlayer("ComPuter");
+  PlayerCreation *player1 = new PlayerCreation();
+  Player *first = player1->GetPlayer("huMan");
   first->PlaceMove(1, 2);
+
+  PlayerCreation *player2 = new PlayerCreation();
+  Player *second = player2->GetPlayer("Computer");
+  second->PlaceMove(1, 2);
 
   return 0;
 }
