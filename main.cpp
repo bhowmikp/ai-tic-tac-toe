@@ -12,6 +12,8 @@
 
 #define ENDL "\n"
 
+const int NUM_PLAYER_TYPES = 2;
+
 int main() {
   int playerType;
 
@@ -29,7 +31,7 @@ int main() {
 
   std::cin >> playerType;
 
-  while (playerType < 1 || playerType > 2) {
+  while (playerType < 1 || playerType > NUM_PLAYER_TYPES) {
     std::cout << "Not valid input" << ENDL;
     std::cin >> playerType;
   }
@@ -37,7 +39,11 @@ int main() {
   // create second player
   PlayerCreation *createPlayer = new PlayerCreation();
   Player *secondPlayer = createPlayer->GetPlayer(playerType);
+  delete createPlayer;
   secondPlayer->SetSymbol('O');
+
+
+  delete board;
 
   return 0;
 }
