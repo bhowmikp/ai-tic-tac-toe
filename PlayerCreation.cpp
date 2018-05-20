@@ -7,7 +7,9 @@
 /*
 * Returns the correct player type based on the parameter
 *
-* @param playerType: ask for type of player
+* @param playerType: ask for type of player.
+* 1: human
+* 2: computer
 *
 * @return the proper type of player. If not found returns null
 */

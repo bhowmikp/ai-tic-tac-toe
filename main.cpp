@@ -44,6 +44,8 @@ int main() {
 
 
   delete board;
+  delete firstPlayer;
+  delete secondPlayer;
 
   return 0;
 }

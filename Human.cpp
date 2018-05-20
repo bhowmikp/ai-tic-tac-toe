@@ -4,6 +4,8 @@
 
 #include "build/Human.h"
 
+Human::~Human() {}
+
 /**
 * Place move on the board
 *

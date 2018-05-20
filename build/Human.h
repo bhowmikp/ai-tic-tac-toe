@@ -10,6 +10,7 @@
 
 class Human : public Player {
  public:
+    ~Human();
     void PlaceMove(Board*, int, int);
 };
 

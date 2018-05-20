@@ -10,6 +10,7 @@
 class Player {
  public:
     char symbol = 'X';
+    virtual ~Player();
     virtual void PlaceMove(Board*, int, int);
     void SetSymbol(char);
 };

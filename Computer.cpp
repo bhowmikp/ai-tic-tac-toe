@@ -4,6 +4,8 @@
 
 #include "build/Computer.h"
 
+Computer::~Computer() {}
+
 /**
 * Place move on the board
 *

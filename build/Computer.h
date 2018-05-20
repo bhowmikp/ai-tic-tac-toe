@@ -10,6 +10,7 @@
 
 class Computer : public Player {
  public:
+    ~Computer();
     void PlaceMove(Board*, int, int);
 };
 

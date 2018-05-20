@@ -4,6 +4,8 @@
 
 #include "build/Player.h"
 
+Player::~Player() {}
+
 /**
 * Place move on the board
 *
@@ -12,6 +14,11 @@
 */
 void Player::PlaceMove(Board* board, int row, int column) {}
 
+/*
+* Set the symbol for the player
+*
+* @param symbol: symbol for the player to be set
+*/
 void Player::SetSymbol(char symbol) {
   this->symbol = symbol;
 }
