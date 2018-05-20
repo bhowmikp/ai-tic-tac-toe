@@ -13,24 +13,31 @@
 #define ENDL "\n"
 
 int main() {
-  Board *sc1, *sc2;
-  sc1 = Board::GetBoardInstance();
-  sc1->ClearBoard();
-  sc2 = Board::GetBoardInstance();
-  sc2->SetSymbol(1, 2, 'x');
-  sc1->PrintBoard();
-  std::cout << ENDL;
-  std::cout << sc2->GetBoard() << ENDL;
-  std::cout << sc1->GetSymbol(1, 2) << ENDL;
-  std::cout << sc1->IsBoardFull() << ENDL;
+  int playerType;
 
-  PlayerCreation *player1 = new PlayerCreation();
-  Player *first = player1->GetPlayer("huMan");
-  first->PlaceMove(1, 2);
+  // create board
+  Board *board = Board::GetBoardInstance();
+  board->CreateBoard();
 
-  PlayerCreation *player2 = new PlayerCreation();
-  Player *second = player2->GetPlayer("Computer");
-  second->PlaceMove(1, 2);
+  // create human first player
+  Player *firstPlayer = new Human();
+  firstPlayer->SetSymbol('X');
+
+  std::cout << "Select player type" << ENDL;
+  std::cout << "1: Human Player" << ENDL;
+  std::cout << "2: Computer Player" << ENDL;
+
+  std::cin >> playerType;
+
+  while (playerType < 1 || playerType > 2) {
+    std::cout << "Not valid input" << ENDL;
+    std::cin >> playerType;
+  }
+
+  // create second player
+  PlayerCreation *createPlayer = new PlayerCreation();
+  Player *secondPlayer = createPlayer->GetPlayer(playerType);
+  secondPlayer->SetSymbol('O');
 
   return 0;
 }

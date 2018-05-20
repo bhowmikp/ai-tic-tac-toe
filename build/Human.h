@@ -5,11 +5,12 @@
 #ifndef BUILD_HUMAN_H_
 #define BUILD_HUMAN_H_
 
+#include "Board.h"
 #include "Player.h"
 
 class Human : public Player {
  public:
-    void PlaceMove(int, int);
+    void PlaceMove(Board*, int, int);
 };
 
 #endif  // BUILD_HUMAN_H_

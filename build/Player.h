@@ -5,9 +5,13 @@
 #ifndef BUILD_PLAYER_H_
 #define BUILD_PLAYER_H_
 
+#include "Board.h"
+
 class Player {
  public:
-    virtual void PlaceMove(int, int);
+    char symbol = 'X';
+    virtual void PlaceMove(Board*, int, int);
+    void SetSymbol(char);
 };
 
 #endif  // BUILD_PLAYER_H_

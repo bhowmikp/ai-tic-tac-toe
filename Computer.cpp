@@ -2,18 +2,15 @@
 // Date: May 19, 2018
 // Copyright Prantar <Copyright Owner>
 
-#include <iostream>
-#include <string>
 #include "build/Computer.h"
-
-#define ENDL "\n"
 
 /**
 * Place move on the board
 *
-* @param row: select the row
-* @param column: select the column
+* @param row: select the row. Parameter ignored
+* @param column: select the column. Paramter ignored
 */
-void Computer::PlaceMove(int row, int column) {
-  std::cout << "Computer object" << ENDL;
+void Computer::PlaceMove(Board* board, int row = 0, int column = 0) {
+  if (!board->IsPositionTaken(row, column))
+    board->SetSymbol(row, column, Player::symbol);
 }

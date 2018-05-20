@@ -5,11 +5,12 @@
 #ifndef BUILD_COMPUTER_H_
 #define BUILD_COMPUTER_H_
 
+#include "Board.h"
 #include "Player.h"
 
 class Computer : public Player {
  public:
-    void PlaceMove(int, int);
+    void PlaceMove(Board*, int, int);
 };
 
 #endif  // BUILD_COMPUTER_H_

@@ -9,11 +9,9 @@
 #include "Human.h"
 #include "Player.h"
 
-#include <string>
-
 class PlayerCreation {
  public:
-    static Player *GetPlayer(std::string);
+    static Player *GetPlayer(int);
 };
 
 #endif  // BUILD_PLAYERCREATION_H_

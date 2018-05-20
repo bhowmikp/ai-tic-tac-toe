@@ -33,6 +33,13 @@ Board* Board::GetBoardInstance() {
 }
 
 /**
+* Creates an empty board
+*/
+void Board::CreateBoard() {
+  board = std::string(9, EMPTY_SYMBOL);
+}
+
+/**
 * Removes all selection on the board
 */
 void Board::ClearBoard() {
@@ -92,4 +99,16 @@ bool Board::IsBoardFull() {
     status = true;
   }
   return status;
+}
+
+/**
+* Given the position determines if a symbol has been placed there already
+*
+* @param row: select the row
+* @param column: select the column
+*
+* @return boolean telling if the position has been taken
+*/
+bool Board::IsPositionTaken(int row, int column) {
+  return GetSymbol(row, column) != EMPTY_SYMBOL;
 }

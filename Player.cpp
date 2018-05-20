@@ -10,4 +10,8 @@
 * @param row: select the row
 * @param column: select the column
 */
-void Player::PlaceMove(int row, int column) {}
+void Player::PlaceMove(Board* board, int row, int column) {}
+
+void Player::SetSymbol(char symbol) {
+  this->symbol = symbol;
+}

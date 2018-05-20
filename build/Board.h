@@ -16,12 +16,14 @@ class Board {
  public:
     ~Board();
     static Board* GetBoardInstance();
+    void CreateBoard();
     void ClearBoard();
     void PrintBoard();
     std::string GetBoard();
     void SetSymbol(int, int, char);
     char GetSymbol(int, int);
     bool IsBoardFull();
+    bool IsPositionTaken(int, int);
 };
 
 #endif  // BUILD_BOARD_H_
