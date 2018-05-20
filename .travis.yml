@@ -2,20 +2,12 @@ language: cpp
 compiler: gcc
 dist: trusty
 
-python:
-  - "3.6"
-  - "pypy3.5"
-
 before_install:
   # C++17
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
   # OCLint
   - sudo apt-get install -qq libstdc++6-4.7-dev
-  # proselint
-  - pip install proselint
-  # cpplint
-  - pip install cpplint
 
 install:
   # C++17
@@ -30,9 +22,5 @@ script:
   - make
   # cppcheck
   - cppcheck --quiet --error-exitcode=1 .
-  # cpplint
-  - cpplint *.cpp build/*.h
   # OCLint
   - ./do_oclint.sh
-  # proselint. Scans README.md for proper grammer
-  - proselint .
