@@ -10,7 +10,7 @@
 #include "build/Player.h"
 #include "build/PlayerCreation.h"
 
-#define ENDL "\n"
+#define ENDL '\n'
 
 const int NUM_PLAYER_TYPES = 2;
 

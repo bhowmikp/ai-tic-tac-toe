@@ -12,7 +12,7 @@ class Board {
     static bool instance_flag;
     static Board *single;
     std::string board;
-    Board() {}
+    Board();
  public:
     ~Board();
     static Board* GetBoardInstance();

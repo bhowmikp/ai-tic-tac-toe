@@ -11,7 +11,7 @@
 class Computer : public Player {
  public:
     ~Computer();
-    void PlaceMove(Board*, int, int);
+    void PlaceMove(Board*, int = 0, int = 0);
 };
 
 #endif  // BUILD_COMPUTER_H_

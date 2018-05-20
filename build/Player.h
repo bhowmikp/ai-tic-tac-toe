@@ -8,11 +8,13 @@
 #include "Board.h"
 
 class Player {
- public:
+ private:
     char symbol = 'X';
+ public:
     virtual ~Player();
     virtual void PlaceMove(Board*, int, int);
     void SetSymbol(char);
+    char GetSymbol();
 };
 
 #endif  // BUILD_PLAYER_H_

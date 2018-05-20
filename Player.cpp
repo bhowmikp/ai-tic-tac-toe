@@ -12,13 +12,17 @@ Player::~Player() {}
 * @param row: select the row
 * @param column: select the column
 */
-void Player::PlaceMove(Board* board, int row, int column) {}
+void Player::PlaceMove(Board*, int, int) {}
 
 /*
 * Set the symbol for the player
 *
-* @param symbol: symbol for the player to be set
+* @param new_symbol: symbol for the player to be set
 */
-void Player::SetSymbol(char symbol) {
-  this->symbol = symbol;
+void Player::SetSymbol(char new_symbol) {
+  this->symbol = new_symbol;
+}
+
+char Player::GetSymbol() {
+  return this->symbol;
 }

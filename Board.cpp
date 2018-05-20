@@ -6,13 +6,17 @@
 #include <iostream>
 #include "build/Board.h"
 
-#define ENDL "\n"
+#define ENDL '\n'
 #define REP(i, a, b) for (int i = a; i < b; i++)
 
 bool Board::instance_flag = false;
 Board* Board::single = NULL;
 
 char const EMPTY_SYMBOL = '-';
+
+Board::Board() {
+  instance_flag = true;
+}
 
 /**
 * Board object deconstructor
@@ -27,7 +31,6 @@ Board::~Board() {
 Board* Board::GetBoardInstance() {
   if (!instance_flag) {
     single = new Board();
-    instance_flag = true;
   }
   return single;
 }

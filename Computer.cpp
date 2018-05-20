@@ -12,7 +12,7 @@ Computer::~Computer() {}
 * @param row: select the row. Parameter ignored
 * @param column: select the column. Paramter ignored
 */
-void Computer::PlaceMove(Board* board, int row = 0, int column = 0) {
+void Computer::PlaceMove(Board* board, int row, int column) {
   if (!board->IsPositionTaken(row, column))
-    board->SetSymbol(row, column, Player::symbol);
+    board->SetSymbol(row, column, Player::GetSymbol());
 }

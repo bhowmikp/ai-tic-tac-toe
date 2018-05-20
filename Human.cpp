@@ -14,5 +14,5 @@ Human::~Human() {}
 */
 void Human::PlaceMove(Board* board, int row, int column) {
   if (!board->IsPositionTaken(row, column))
-    board->SetSymbol(row, column, Player::symbol);
+    board->SetSymbol(row, column, Player::GetSymbol());
 }
