@@ -4,6 +4,7 @@ dist: trusty
 
 python:
   - "3.6"
+  - "pypy3.5"
 
 before_install:
   # C++17
@@ -12,9 +13,9 @@ before_install:
   # OCLint
   - sudo apt-get install -qq libstdc++6-4.7-dev
   # proselint
-  - pip3 install proselint
+  - pip install proselint
   # cpplint
-  - pip3 install cpplint
+  - pip install cpplint
 
 install:
   # C++17
