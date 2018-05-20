@@ -16,3 +16,5 @@ install:
   
 script: 
   - make
+  # cppcheck
+  - cppcheck --quiet --error-exitcode=1 . 
