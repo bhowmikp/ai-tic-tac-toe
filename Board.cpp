@@ -115,3 +115,69 @@ bool Board::IsBoardFull() {
 bool Board::IsPositionTaken(int row, int column) {
   return GetSymbol(row, column) != EMPTY_SYMBOL;
 }
+
+/*
+* Check if someone won the game
+*
+* @return boolean telling if someone won the game
+*/
+bool Board::CheckWin() {
+  return CheckWinRow() || CheckWinColumn() || CheckWinDiagonal();
+}
+
+/*
+* Check if a row is completed for winning
+*
+* @return if a row is won
+*/
+bool Board::CheckWinRow() {
+  REP(row_num, 1, 4) {
+    if ((GetSymbol(row_num, 1) != EMPTY_SYMBOL) &&
+        (GetSymbol(row_num, 1) == GetSymbol(row_num, 2)) &&
+        (GetSymbol(row_num, 1) == GetSymbol(row_num, 3)) &&
+        (GetSymbol(row_num, 2) == GetSymbol(row_num, 3))) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/*
+* Check if a column is completed for winning
+*
+* @return if a column is won
+*/
+bool Board::CheckWinColumn() {
+  REP(column_num, 1, 4) {
+    if ((GetSymbol(1, column_num) != EMPTY_SYMBOL) &&
+        (GetSymbol(1, column_num) == GetSymbol(2, column_num)) &&
+        (GetSymbol(1, column_num) == GetSymbol(3, column_num)) &&
+        (GetSymbol(2, column_num) == GetSymbol(3, column_num))) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/*
+* Check if a diagonal is completed for winning
+*
+* @return if a diagonal is won
+*/
+bool Board::CheckWinDiagonal() {
+  // left check
+  if ((GetSymbol(1, 1) != EMPTY_SYMBOL) &&
+      (GetSymbol(1, 1) == GetSymbol(2, 2)) &&
+      (GetSymbol(1, 1) == GetSymbol(3, 3)) &&
+      (GetSymbol(2, 2) == GetSymbol(3, 3))) {
+    return true;
+  }
+  // right check
+  if ((GetSymbol(1, 3) != EMPTY_SYMBOL) &&
+      (GetSymbol(1, 3) == GetSymbol(2, 2)) &&
+      (GetSymbol(1, 3) == GetSymbol(3, 1)) &&
+      (GetSymbol(2, 2) == GetSymbol(3, 1))) {
+    return true;
+  }
+  return false;
+}

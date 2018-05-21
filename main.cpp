@@ -33,7 +33,10 @@ int main() {
 
   while (playerType < 1 || playerType > NUM_PLAYER_TYPES) {
     std::cout << "Not valid input" << ENDL;
-    std::cin >> playerType;
+    if (!(std::cin >> playerType)) {
+      std::cin.clear();
+      std::cin.ignore();
+    }
   }
 
   // create second player

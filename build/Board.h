@@ -13,6 +13,9 @@ class Board {
     static Board *single;
     std::string board;
     Board();
+    bool CheckWinRow();
+    bool CheckWinColumn();
+    bool CheckWinDiagonal();
  public:
     ~Board();
     static Board* GetBoardInstance();
@@ -24,6 +27,7 @@ class Board {
     char GetSymbol(int, int);
     bool IsBoardFull();
     bool IsPositionTaken(int, int);
+    bool CheckWin();
 };
 
 #endif  // BUILD_BOARD_H_
