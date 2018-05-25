@@ -2,17 +2,48 @@
 // Date: May 18, 2018
 // Copyright Prantar <Copyright Owner>
 
-#include <iostream>
-#include <string>
-#include "build/Board.h"
-#include "build/Computer.h"
-#include "build/Human.h"
-#include "build/Player.h"
-#include "build/PlayerCreation.h"
+#include "build/main.h"
 
-#define ENDL '\n'
+/*
+* Checks if the given input is an integer. If not say input is not valid
+* and asks again
+*
+* @return integer with proper input validation done
+*/
+int getIntInput() {
+  int returnValue;
 
-const int NUM_PLAYER_TYPES = 2;
+  while (!(std::cin >> returnValue)) {
+    std::cout << "Enter valid input" << ENDL;
+    std::cin.clear();
+    std::cin.ignore();
+  }
+
+  return returnValue;
+}
+
+void playGame(Board *board, Player *firstPlayer, Player *secondPlayer) {
+  int counter = 1;
+  int row, column;
+
+  while (!board->CheckWin() && !board->IsBoardFull()) {
+    if (counter % 2 == 1) {
+      std::cout << "Player 1 enter row number: ";
+      row = getIntInput();
+      std::cout << "Player 1 enter column number: ";
+      column = getIntInput();
+      firstPlayer->PlaceMove(board, row, column);
+    } else {
+      std::cout << "Player 2 enter row number: ";
+      row = getIntInput();
+      std::cout << "Player 2 enter column number: ";
+      column = getIntInput();
+      secondPlayer->PlaceMove(board, row, column);
+    }
+    board->PrintBoard();
+    counter++;
+  }
+}
 
 int main() {
   int playerType;
@@ -25,30 +56,36 @@ int main() {
   Player *firstPlayer = new Human();
   firstPlayer->SetSymbol('X');
 
-  std::cout << "Select player type" << ENDL;
-  std::cout << "1: Human Player" << ENDL;
-  std::cout << "2: Computer Player" << ENDL;
+  while (1) {
+    std::cout << "1: Human Player" << ENDL;
+    std::cout << "2: Computer Player" << ENDL;
+    std::cout << QUIT_INT << ": QUIT" << ENDL;
+    std::cout << "Select player type: ";
+    playerType = getIntInput();
 
-  std::cin >> playerType;
-
-  while (playerType < 1 || playerType > NUM_PLAYER_TYPES) {
-    std::cout << "Not valid input" << ENDL;
-    if (!(std::cin >> playerType)) {
-      std::cin.clear();
-      std::cin.ignore();
+    while ((playerType < 1 || playerType > NUM_PLAYER_TYPES)
+            && playerType != QUIT_INT) {
+      std::cout << "Enter valid input" << ENDL;
+      playerType = getIntInput();
     }
+
+    if (playerType == QUIT_INT)
+      return 0;
+
+    // create second player
+    PlayerCreation *createPlayer = new PlayerCreation();
+    Player *secondPlayer = createPlayer->GetPlayer(playerType);
+    delete createPlayer;
+    secondPlayer->SetSymbol('O');
+
+    board->ClearBoard();
+    playGame(board, firstPlayer, secondPlayer);
+
+    delete secondPlayer;
   }
-
-  // create second player
-  PlayerCreation *createPlayer = new PlayerCreation();
-  Player *secondPlayer = createPlayer->GetPlayer(playerType);
-  delete createPlayer;
-  secondPlayer->SetSymbol('O');
-
 
   delete board;
   delete firstPlayer;
-  delete secondPlayer;
 
   return 0;
 }

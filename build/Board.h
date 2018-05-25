@@ -5,7 +5,13 @@
 #ifndef BUILD_BOARD_H_
 #define BUILD_BOARD_H_
 
+#include <iostream>
 #include <string>
+
+#define ENDL '\n'
+#define REP(i, a, b) for (int i = a; i < b; i++)
+
+char const EMPTY_SYMBOL = '-';
 
 class Board {
  private:

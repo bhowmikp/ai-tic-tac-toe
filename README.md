@@ -1,6 +1,8 @@
 # ai-tic-tac-toe
 
 ### Test
-make<br>
-sudo apt install valgrind<br>
+```sh
+make
+sudo apt install valgrind
 valgrind --leak-check=yes ./game
+```

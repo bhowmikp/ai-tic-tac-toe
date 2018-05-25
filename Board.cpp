@@ -2,17 +2,10 @@
 // Date: April 28, 2018
 // Copyright Prantar <Copyright Owner>
 
-#include <string>
-#include <iostream>
 #include "build/Board.h"
 
-#define ENDL '\n'
-#define REP(i, a, b) for (int i = a; i < b; i++)
-
-bool Board::instance_flag = false;
 Board* Board::single = NULL;
-
-char const EMPTY_SYMBOL = '-';
+bool Board::instance_flag = false;
 
 Board::Board() {
   instance_flag = true;
