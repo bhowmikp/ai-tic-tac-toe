@@ -20,5 +20,6 @@ const int QUIT_INT = 3;
 
 int getIntInput();
 void playGame(Board, Player, Player);
+std::pair<int, int> getRowAndColumnInfo();
 
 #endif  // BUILD_MAIN_H_

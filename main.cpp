@@ -22,6 +22,22 @@ int getIntInput() {
   return returnValue;
 }
 
+/*
+* Asks the user for row and column info
+*
+* @return pair of info. First value row, second column
+*/
+std::pair<int, int> getRowAndColumnInfo() {
+  return std::pair(0, 0);
+}
+
+/*
+* Plays the tic tac toe game
+*
+* @param board is the board to be played on
+* @param firstPlayer is the first player
+* @param secondPlayer is the second player
+*/
 void playGame(Board *board, Player *firstPlayer, Player *secondPlayer) {
   int counter = 1;
   int row, column;
