@@ -48,7 +48,7 @@ std::pair<int, int> getRowAndColumnInfo(Board *board) {
       column = 0;
     }
   }
-  return std::pair(row, column);
+  return std::pair<int, int>(row, column);
 }
 
 /*
