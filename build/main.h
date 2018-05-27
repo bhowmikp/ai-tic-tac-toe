@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <utility>
 #include "Board.h"
 #include "Computer.h"
 #include "Human.h"
@@ -19,7 +20,7 @@ const int NUM_PLAYER_TYPES = 2;
 const int QUIT_INT = 3;
 
 int getIntInput();
-void playGame(Board, Player, Player);
-std::pair<int, int> getRowAndColumnInfo();
+void playGame(Board, Player, Player, int);
+std::pair<int, int> getRowAndColumnInfo(Board);
 
 #endif  // BUILD_MAIN_H_

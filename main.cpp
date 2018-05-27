@@ -25,10 +25,30 @@ int getIntInput() {
 /*
 * Asks the user for row and column info
 *
+* @param board is the board that the game is being played on
+*
 * @return pair of info. First value row, second column
 */
-std::pair<int, int> getRowAndColumnInfo() {
-  return std::pair(0, 0);
+std::pair<int, int> getRowAndColumnInfo(Board *board) {
+  int row = 0;
+  int column = 0;
+
+  while (board->IsPositionTaken(row, column)) {
+    std::cout << "Player 1 enter row number[1 - 3]: ";
+    while (row < 1 || row > 3)
+      row = getIntInput();
+
+    std::cout << "Player 1 enter column number[1 - 3]: ";
+    while (column < 1 || column > 3)
+      column = getIntInput();
+
+    if (board->IsPositionTaken(row, column)) {
+      std::cout << "Position is taken" << ENDL;
+      row = 0;
+      column = 0;
+    }
+  }
+  return std::pair(row, column);
 }
 
 /*
@@ -37,28 +57,34 @@ std::pair<int, int> getRowAndColumnInfo() {
 * @param board is the board to be played on
 * @param firstPlayer is the first player
 * @param secondPlayer is the second player
+* @param playerType is an int stating whether it is human or computer
 */
-void playGame(Board *board, Player *firstPlayer, Player *secondPlayer) {
+void playGame(Board *board, Player *firstPlayer, Player *secondPlayer,
+              int playerType) {
   int counter = 1;
-  int row, column;
+  int row = 0, column = 0;
+  std::pair<int, int> locationInfo;
 
   while (!board->CheckWin() && !board->IsBoardFull()) {
     if (counter % 2 == 1) {
-      std::cout << "Player 1 enter row number: ";
-      row = getIntInput();
-      std::cout << "Player 1 enter column number: ";
-      column = getIntInput();
+      locationInfo = getRowAndColumnInfo(board);
+      row = locationInfo.first;
+      column = locationInfo.second;
       firstPlayer->PlaceMove(board, row, column);
     } else {
-      std::cout << "Player 2 enter row number: ";
-      row = getIntInput();
-      std::cout << "Player 2 enter column number: ";
-      column = getIntInput();
+      if (playerType == 1) {
+        locationInfo = getRowAndColumnInfo(board);
+        row = locationInfo.first;
+        column = locationInfo.second;
+      }
       secondPlayer->PlaceMove(board, row, column);
     }
     board->PrintBoard();
     counter++;
   }
+
+  if (board->CheckWin())
+    std::cout << "PLAYER " << (counter % 2) + 1 << " WINS\n" << ENDL;
 }
 
 int main() {
@@ -95,7 +121,7 @@ int main() {
     secondPlayer->SetSymbol('O');
 
     board->ClearBoard();
-    playGame(board, firstPlayer, secondPlayer);
+    playGame(board, firstPlayer, secondPlayer, playerType);
 
     delete secondPlayer;
   }
