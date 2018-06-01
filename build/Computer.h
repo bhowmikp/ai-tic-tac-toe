@@ -8,18 +8,20 @@
 #include "Board.h"
 #include "Player.h"
 #include <iostream>
+#include <string>
 #include <utility>
 
 #define REP(i, a, b) for (int i = a; i < b; i++)
 
 class Computer : public Player {
  private:
-    std::pair<int, int> checkRow(Board*, char);
-    std::pair<int, int> checkColumn(Board*, char);
-    std::pair<int, int> checkDiagonal(Board*, char);
+    char otherPlayerSymbol(Board*);
     std::pair<int, int> corner(Board*);
     std::pair<int, int> center(Board*);
     std::pair<int, int> side(Board*);
+    std::pair<int, int> checkRow(Board*, char);
+    std::pair<int, int> checkColumn(Board*, char);
+    std::pair<int, int> checkDiagonal(Board*, char);
     std::pair<int, int> compute(Board*);
  public:
     ~Computer();

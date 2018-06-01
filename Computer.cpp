@@ -23,34 +23,131 @@ void Computer::PlaceMove(Board* board, int row, int column) {
   board->SetSymbol(locationInfo.first, locationInfo.second, GetSymbol());
 }
 
+/*
+* Figures out where the move should be placed
+*
+* First check if the computer can make a winning move, then check if
+* the player can make a winning move in which case block it,
+* then try to place a move on the corner, center or side.
+*
+* @param board: select the board the game is played on
+*/
 std::pair<int, int> Computer::compute(Board* board) {
   int counter = 0;
   int row = -1, column = -1;
   std::pair<int, int> locationInfo;
 
-  while (counter < 3 && row == -1 && column == -1) {
+  char firstPlayerSymbol = otherPlayerSymbol(board);
+
+  while (counter < 9 && row == -1 && column == -1) {
     if (counter == 0) {
-      locationInfo = corner(board);
-      row = locationInfo.first;
-      column = locationInfo.second;
+      locationInfo = checkRow(board, GetSymbol());
     } else if (counter == 1) {
-      locationInfo = center(board);
-      row = locationInfo.first;
-      column = locationInfo.second;
+      locationInfo = checkColumn(board, GetSymbol());
     } else if (counter == 2) {
+      locationInfo = checkDiagonal(board, GetSymbol());
+    } else if (counter == 3) {
+      locationInfo = checkRow(board, firstPlayerSymbol);
+    } else if (counter == 4) {
+      locationInfo = checkColumn(board, firstPlayerSymbol);
+    } else if (counter == 5) {
+      locationInfo = checkDiagonal(board, firstPlayerSymbol);
+    } else if (counter == 6) {
+      locationInfo = corner(board);
+    } else if (counter == 7) {
+      locationInfo = center(board);
+    } else if (counter == 8) {
       locationInfo = side(board);
-      row = locationInfo.first;
-      column = locationInfo.second;
     }
+    row = locationInfo.first;
+    column = locationInfo.second;
     counter++;
   }
   return std::pair<int, int>(row, column);
 }
 
 /*
+* Gets the symbol of the other player playing
+*
+* @param board: select the board the game is played on
+*
+* @return the symbol of the other player. If not found return n
+*/
+char Computer::otherPlayerSymbol(Board* board) {
+  std::string boardString = board->GetBoard();
+
+  for (char &c : boardString) {
+    if (c != EMPTY_SYMBOL && c != GetSymbol())
+      return c;
+  }
+
+  return 'n';
+}
+
+/*
+* Check rows to see if a move can be made to win the game or stop
+* the other player from winning
+*
+* @param board: select the board the game is played on
+* @param playerSymbol: determines whether checking to win or defend.
+*                       To check to win send symbol of computer
+*                       To check for defend send symbol of other player
+*
+* @return the (row, column) the move should be placed to win or defend.
+*         Sends (-1, -1) if suitable move not found
+*/
+std::pair<int, int> Computer::checkRow(Board* board, char playerSymbol) {
+  (void)board;
+  (void)playerSymbol;
+  std::pair<int, int> locationInfo;
+  return std::pair<int, int>(-1, -1);
+}
+
+/*
+* Check columns to see if a move can be made to win the game or stop
+* the other player from winning
+*
+* @param board: select the board the game is played on
+* @param playerSymbol: determines whether checking to win or defend.
+*                       To check to win send symbol of computer
+*                       To check for defend send symbol of other player
+*
+* @return the (row, column) the move should be placed to win or defend.
+*         Sends (-1, -1) if suitable move not found
+*/
+std::pair<int, int> Computer::checkColumn(Board* board, char playerSymbol) {
+  (void)board;
+  (void)playerSymbol;
+  std::pair<int, int> locationInfo;
+  return std::pair<int, int>(-1, -1);
+}
+
+/*
+* Check diagonals to see if a move can be made to win the game or stop
+* the other player from winning
+*
+* @param board: select the board the game is played on
+* @param playerSymbol: determines whether checking to win or defend.
+*                       To check to win send symbol of computer
+*                       To check for defend send symbol of other player
+*
+* @return the (row, column) the move should be placed to win or defend.
+*         Sends (-1, -1) if suitable move not found
+*/
+std::pair<int, int> Computer::checkDiagonal(Board* board, char playerSymbol) {
+  (void)board;
+  (void)playerSymbol;
+  std::pair<int, int> locationInfo;
+  return std::pair<int, int>(-1, -1);
+}
+
+/*
 * Place move on a corner of the board
 *
 * @param board: select the board the game is played on
+*
+* @return a pair containing the (row, column) for the move to be placed
+*         if a suitable spot not found returns (-1, -1)
 */
 std::pair<int, int> Computer::corner(Board* board) {
   int row = -1, column = -1;
@@ -76,6 +173,9 @@ std::pair<int, int> Computer::corner(Board* board) {
 * Place move on a center of the board
 *
 * @param board: select the board the game is played on
+*
+* @return a pair containing the (row, column) for the move to be placed
+*         if a suitable spot not found returns (-1, -1)
 */
 std::pair<int, int> Computer::center(Board* board) {
   int row = -1, column = -1;
@@ -92,6 +192,9 @@ std::pair<int, int> Computer::center(Board* board) {
 * Place move on a side of the board
 *
 * @param board: select the board the game is played on
+*
+* @return a pair containing the (row, column) for the move to be placed
+*         if a suitable spot not found returns (-1, -1)
 */
 std::pair<int, int> Computer::side(Board* board) {
   int row = -1, column = -1;
