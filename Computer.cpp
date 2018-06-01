@@ -97,9 +97,30 @@ char Computer::otherPlayerSymbol(Board* board) {
 *         Sends (-1, -1) if suitable move not found
 */
 std::pair<int, int> Computer::checkRow(Board* board, char playerSymbol) {
-  (void)board;
-  (void)playerSymbol;
+  int symbolCounter = 0;
+  int rowMove = 0, colMove = 0;
   std::pair<int, int> locationInfo;
+
+  REP(rowNumber, 1, 4) {
+    symbolCounter = 0;
+    rowMove = 0;
+    colMove = 0;
+
+    REP(colNumber, 1, 4) {
+      if (board->GetSymbol(rowNumber, colNumber) == playerSymbol) {
+        symbolCounter++;
+      } else {
+        rowMove = rowNumber;
+        colMove = colNumber;
+      }
+    }
+    if (symbolCounter == 2) {
+      if (!board->IsPositionTaken(rowMove, colMove)) {
+        return std::pair<int, int>(rowMove, colMove);
+      }
+    }
+  }
+
   return std::pair<int, int>(-1, -1);
 }
 
@@ -116,9 +137,30 @@ std::pair<int, int> Computer::checkRow(Board* board, char playerSymbol) {
 *         Sends (-1, -1) if suitable move not found
 */
 std::pair<int, int> Computer::checkColumn(Board* board, char playerSymbol) {
-  (void)board;
-  (void)playerSymbol;
+  int symbolCounter = 0;
+  int rowMove = 0, colMove = 0;
   std::pair<int, int> locationInfo;
+
+  REP(colNumber, 1, 4) {
+    symbolCounter = 0;
+    rowMove = 0;
+    colMove = 0;
+
+    REP(rowNumber, 1, 4) {
+      if (board->GetSymbol(rowNumber, colNumber) == playerSymbol) {
+        symbolCounter++;
+      } else {
+        rowMove = rowNumber;
+        colMove = colNumber;
+      }
+    }
+    if (symbolCounter == 2) {
+      if (!board->IsPositionTaken(rowMove, colMove)) {
+        return std::pair<int, int>(rowMove, colMove);
+      }
+    }
+  }
+
   return std::pair<int, int>(-1, -1);
 }
 
@@ -135,9 +177,46 @@ std::pair<int, int> Computer::checkColumn(Board* board, char playerSymbol) {
 *         Sends (-1, -1) if suitable move not found
 */
 std::pair<int, int> Computer::checkDiagonal(Board* board, char playerSymbol) {
-  (void)board;
-  (void)playerSymbol;
+  int symbolCounter = 0;
+  int rowMove = 0, colMove = 0;
+  int rightDiagonalCol = 3;
   std::pair<int, int> locationInfo;
+
+  REP(leftDiagonal, 1, 4) {
+    if (board->GetSymbol(leftDiagonal, leftDiagonal) == playerSymbol) {
+      symbolCounter++;
+    } else {
+      rowMove = leftDiagonal;
+      colMove = leftDiagonal;
+    }
+  }
+
+  if (symbolCounter == 2) {
+    if (!board->IsPositionTaken(rowMove, colMove)) {
+      return std::pair<int, int>(rowMove, colMove);
+    }
+  }
+
+  rowMove = 0;
+  colMove = 0;
+  symbolCounter = 0;
+
+  REP(rightDiagonalRow, 1, 4) {
+    if (board->GetSymbol(rightDiagonalRow, rightDiagonalCol) == playerSymbol) {
+      symbolCounter++;
+    } else {
+      rowMove = rightDiagonalRow;
+      colMove = rightDiagonalCol;
+    }
+    rightDiagonalCol--;
+  }
+
+  if (symbolCounter == 2) {
+    if (!board->IsPositionTaken(rowMove, colMove)) {
+      return std::pair<int, int>(rowMove, colMove);
+    }
+  }
+
   return std::pair<int, int>(-1, -1);
 }
 
