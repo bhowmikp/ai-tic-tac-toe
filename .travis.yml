@@ -7,7 +7,13 @@ before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
 
+services:
+  - docker
+
 install:
+  # docker
+  - docker pull bhowmikp/ai-tic-tac-toe
+  - docker run bhowmikp/ai-tic-tac-toe /bin/sh -c "make; cppcheck --quiet --error-exitcode=1 ."
   # C++17
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
