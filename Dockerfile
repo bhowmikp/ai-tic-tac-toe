@@ -7,12 +7,12 @@ MAINTAINER Prantar <prantarbhowmik@yhaoo.com>
 WORKDIR /app
 
 # set up c++17
-RUN sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
-RUN sudo apt-get update -qq
-RUN sudo apt-get install -qq g++-6
-RUN sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/test
+RUN apt-get update -qq
+RUN apt-get install -qq g++-6
+RUN update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
 # set up cppcheck
-RUN sudo apt-get install -qq cppcheck
+RUN apt-get install -qq cppcheck
 
 # Adding the whole repository to the image
 COPY . ./
