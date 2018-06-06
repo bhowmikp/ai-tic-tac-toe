@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bhowmikp/ai-tic-tac-toe.svg?branch=master)](https://travis-ci.org/bhowmikp/ai-tic-tac-toe)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/bhowmikp/ai-tic-tac-toe.svg?branch=master)](https://travis-ci.org/bhowmikp/ai-tic-tac-toe)
 
 # ai-tic-tac-toe
 
