@@ -2,9 +2,6 @@ FROM gcc:latest
 
 MAINTAINER Prantar <prantarbhowmik@yhaoo.com>
 
-# cppcheck
-RUN apt-get install -qq cppcheck
-
 # Set the WORKDIR to /app so all following commands run in /app
 WORKDIR /app
 
@@ -12,4 +9,3 @@ WORKDIR /app
 COPY . ./
 
 CMD ["make"]
-CMD ["cppcheck", "--quiet", "--error-exitcode=1", "."]
