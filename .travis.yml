@@ -13,7 +13,7 @@ services:
 install:
   # docker
   - docker pull bhowmikp/ai-tic-tac-toe
-  - docker run bhowmikp/ai-tic-tac-toe /bin/sh -c "make; cppcheck --quiet --error-exitcode=1 ."
+  - docker run bhowmikp/ai-tic-tac-toe /bin/sh -c "make"
   # C++17
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
